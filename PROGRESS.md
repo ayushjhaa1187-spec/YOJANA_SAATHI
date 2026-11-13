@@ -54,3 +54,21 @@ Autonomous implementation log tracking progress across build steps per README.md
     ```
 
 ---
+
+## Step 6: Frontend Plumbing & Conversation State
+- **Status:** COMPLETED
+- **What was done:**
+  - Implemented `lib/api.ts`: typed wrappers for `/api/understand`, `/api/match`, `/api/schemes/:id/documents`, and `/api/centers`, with 10s timeout, 1 retry, returning `{ ok: true, data } | { ok: false, error }` (never throws).
+  - Implemented `hooks/useOnline.ts`: tracks online/offline status with browser listeners.
+  - Implemented `hooks/useSpeak.ts`: browser `speechSynthesis` queue with cancellation, language detection, and Hindi voice fallback check.
+  - Implemented `hooks/useSpeechRecognition.ts`: Web Speech API wrapper with auto-stop on ~2s silence, error mapping, and text confirmation without premature sending.
+  - Implemented `lib/conversation.ts` and `components/ConversationProvider.tsx`: `useReducer` managing pure in-memory state (only language stored in localStorage).
+  - Wrapped `app/layout.tsx` with `<ConversationProvider>`.
+  - Implemented `tests/conversation.test.ts`: 8 unit tests covering all reducer actions.
+  - All 41 tests passed; production build succeeded.
+- **Assumed:**
+  - DemoButton feeds text directly into Listen flow rather than triggering speech synthesis.
+- **To Check:**
+  - Verify `useSpeechRecognition` behaves properly on non-Chrome browsers (falls back gracefully to textarea).
+
+---
