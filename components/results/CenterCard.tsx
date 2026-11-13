@@ -22,7 +22,7 @@ export function CenterCard({ center, language = "hi" }: CenterCardProps) {
               {cleanName}
             </h4>
             {isSample && (
-              <span className="px-2 py-0.5 rounded-full bg-kesar/15 text-kesar text-xs font-bold font-body">
+              <span className="px-2.5 py-0.5 rounded-full bg-kesar/15 text-kesar text-small font-bold font-body">
                 {t("sample_tag", language)}
               </span>
             )}

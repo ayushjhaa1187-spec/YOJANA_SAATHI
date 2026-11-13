@@ -68,6 +68,8 @@ export const translations = {
     error_no_schemes: "अभी कोई योजना नहीं मिली। CSC सेंटर पर पूछिए।",
     error_unsupported_browser: "Chrome में खोलिए।",
     wispr_fallback_note: "Wispr Flow या कीबोर्ड से बोलकर लिखें",
+    no_hindi_tts_notice: "आपके डिवाइस में हिंदी आवाज़ नहीं है। नीचे लिखा पढ़ें।",
+    unsupported_lang_notice: "केवल हिंदी और अंग्रेज़ी उपलब्ध हैं।",
 
     // Question bank
     q_age: "आपकी उम्र कितनी है?",
@@ -160,6 +162,8 @@ export const translations = {
     error_no_schemes: "No matching schemes found. Inquire at your nearest CSC center.",
     error_unsupported_browser: "Please open in Google Chrome.",
     wispr_fallback_note: "Dictate with Wispr Flow or type using keyboard",
+    no_hindi_tts_notice: "Hindi voice is not available on this device. Please read the text below.",
+    unsupported_lang_notice: "Only Hindi and English are supported.",
 
     // Question bank
     q_age: "What is your age?",

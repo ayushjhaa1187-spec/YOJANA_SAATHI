@@ -14,7 +14,7 @@ import { Match } from "@/lib/types";
 export default function ResultsPage() {
   const router = useRouter();
   const { state, dispatch } = useConversation();
-  const { speak, cancel, speaking } = useSpeak();
+  const { speak, cancel, speaking, hasHindiVoice } = useSpeak();
 
   const [showAll, setShowAll] = useState(false);
   const [activeSpeakingSchemeId, setActiveSpeakingSchemeId] = useState<string | null>(null);
@@ -88,7 +88,23 @@ export default function ResultsPage() {
       />
 
       <main className="flex-1 flex flex-col justify-between px-4 py-4 max-w-[480px] mx-auto w-full">
+        {/* Accessible live region for read-aloud status */}
+        <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+          {speaking
+            ? isReadingAll
+              ? t("speak_all", state.language)
+              : t("read_aloud", state.language)
+            : ""}
+        </div>
+
         <div>
+          {/* Fallback notice if device lacks Hindi TTS voice */}
+          {state.language === "hi" && !hasHindiVoice && (
+            <div className="w-full text-center py-2 px-3 mb-3 rounded-card bg-kesar/10 border border-kesar/20 text-small text-kesar font-medium">
+              ℹ️ {t("no_hindi_tts_notice", state.language)}
+            </div>
+          )}
+
           {/* Headline & Read Aloud Controls */}
           <div className="flex items-center justify-between gap-3 mt-2 mb-4">
             <div>

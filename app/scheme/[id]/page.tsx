@@ -139,9 +139,9 @@ export default function SchemeDetailPage() {
 
               {/* Where to Go / Centers List */}
               <div className="w-full my-2">
-                <h3 className="font-heading font-bold text-heading text-neel mb-2">
+                <h2 className="font-heading font-bold text-heading text-neel mb-2">
                   {t("centers_heading", state.language)}
-                </h3>
+                </h2>
                 <div className="flex flex-col gap-2">
                   {centers.slice(0, 3).map((center) => (
                     <CenterCard

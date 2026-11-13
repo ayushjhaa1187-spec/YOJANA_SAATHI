@@ -152,6 +152,34 @@ Autonomous implementation log tracking progress across build steps per README.md
 
 ---
 
+## Phase C: Frontend Quality, Accessibility & Voice Robustness
+- **Status:** COMPLETED
+- **What was done:**
+  - **Accessibility Audit & Fixes**:
+    - Confirmed `aria-label` across all interactive buttons (MicButton, QuestionCard TTS, SchemeCard TTS, LanguagePicker, Header back link, SpeakAll).
+    - Added `aria-live="polite"` dynamic live announcer regions in `app/listen/page.tsx` and `app/results/page.tsx` for spoken/processing status changes.
+    - Verified strict heading hierarchy (`h1` -> `h2` -> `h3` / `h4`) across all 4 screens (`/`, `/listen`, `/results`, `/scheme/[id]`).
+    - Standardized typography to ensure zero text below 16px (`text-small` is 16px, replaced `text-xs` badge in `CenterCard.tsx` with `text-small`).
+    - Maintained 56px minimum touch target height (`min-h-touch`) across buttons and cards.
+  - **Edge-Case Copy**:
+    - Added missing edge-case keys in `lib/i18n.ts`: `no_hindi_tts_notice` and `unsupported_lang_notice` for both `hi` and `en`.
+  - **Voice Robustness**:
+    - Checked `hasHindiVoice` in `hooks/useSpeak.ts`; added device notice when device lacks local Hindi speech synthesis voice.
+    - Kept transcript preserved in textarea if speech recognition disconnects or finishes.
+  - **Automated Language-Switch Testing**:
+    - Created `tests/i18n_screens.test.ts` (7 unit tests) verifying dynamic switching and dictionary parity between Hindi and English across all screens.
+  - **DevTools Multi-Screen Walkthrough & Responsive Verification**:
+    - Ran production server on port 3000 and used `chrome-devtools-mcp` to walk the 360px mobile viewport: Home -> Demo -> Listen (Guided questions) -> Results (Ranked schemes) -> Scheme detail (Checklist & CSCs).
+    - Verified viewport layout across 360px, 412px, and 1024px: confirmed `hasHorizontalScroll: false` and strict max 480px centered column.
+    - Terminated background production server following verification.
+  - All 56 Vitest tests passing; Next.js production build succeeded.
+- **Assumed:**
+  - When speech recognition or TTS voice is unavailable (e.g. headless browser or unsupported device), the interface displays a clear visual fallback notice while remaining fully functional via typed input and quick chips.
+- **To Check:**
+  - Check screen reader accessibility announcement of dynamic question transitions using VoiceOver or NVDA.
+
+---
+
 ## Step 10: Polish, Visual Verification & Acceptance Test
 - **Status:** COMPLETED
 - **What was done:**

@@ -59,9 +59,9 @@ export function DocumentChecklist({
   return (
     <div className="w-full flex flex-col gap-3 my-2">
       <div className="flex items-center justify-between gap-2">
-        <h3 className="font-heading font-bold text-heading text-neel">
+        <h2 className="font-heading font-bold text-heading text-neel">
           {t("documents_heading", language)}
-        </h3>
+        </h2>
 
         <button
           type="button"

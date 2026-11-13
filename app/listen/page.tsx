@@ -13,6 +13,7 @@ import { OfflineBanner } from "@/components/feedback/OfflineBanner";
 import { Loader } from "@/components/feedback/Loader";
 import { useConversation } from "@/components/ConversationProvider";
 import { useSpeechRecognition } from "@/hooks/useSpeechRecognition";
+import { useSpeak } from "@/hooks/useSpeak";
 import { api } from "@/lib/api";
 import { t } from "@/lib/i18n";
 import { QUESTION_BANK } from "@/lib/questions";
@@ -38,6 +39,8 @@ function ListenScreenContent() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isGuidedMode, setIsGuidedMode] = useState(false);
   const [guidedStep, setGuidedStep] = useState(0);
+
+  const { hasHindiVoice } = useSpeak();
 
   const {
     supported: speechSupported,
@@ -219,6 +222,21 @@ function ListenScreenContent() {
       />
 
       <main className="flex-1 flex flex-col justify-between px-4 py-4 max-w-[480px] mx-auto w-full">
+        {/* Accessible live region for dynamic screen-reader status announcements */}
+        <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+          {errorMessage
+            ? errorMessage
+            : listening
+            ? t("mic_listening", state.language)
+            : state.status === "thinking"
+            ? t("mic_processing", state.language)
+            : isGuidedMode && guidedQuestionData
+            ? guidedQuestionData[state.language === "en" && guidedQuestionData.text_en ? "text_en" : "text_hi"]
+            : state.nextQuestion
+            ? state.nextQuestion[state.language === "en" && state.nextQuestion.text_en ? "text_en" : "text_hi"]
+            : ""}
+        </div>
+
         <div>
           {/* Follow-up step dots (max 3) */}
           <StepDots
@@ -226,6 +244,13 @@ function ListenScreenContent() {
             totalSteps={isGuidedMode ? GUIDED_FIELDS.length : 3}
             language={state.language}
           />
+
+          {/* Fallback notice if device lacks Hindi TTS voice */}
+          {state.language === "hi" && !hasHindiVoice && (
+            <div className="w-full text-center py-2 px-3 my-2 rounded-card bg-kesar/10 border border-kesar/20 text-small text-kesar font-medium">
+              ℹ️ {t("no_hindi_tts_notice", state.language)}
+            </div>
+          )}
 
           {/* Error Banner */}
           {errorMessage && (
@@ -246,6 +271,7 @@ function ListenScreenContent() {
           {/* Question Display */}
           {isGuidedMode && guidedQuestionData ? (
             <div className="flex flex-col">
+              <h1 className="sr-only">{t("listen_title", state.language)}</h1>
               <QuestionCard
                 text_hi={guidedQuestionData.text_hi}
                 text_en={guidedQuestionData.text_en}
@@ -261,6 +287,7 @@ function ListenScreenContent() {
             </div>
           ) : state.nextQuestion ? (
             <div className="flex flex-col">
+              <h1 className="sr-only">{t("listen_title", state.language)}</h1>
               <QuestionCard
                 text_hi={state.nextQuestion.text_hi}
                 text_en={state.nextQuestion.text_en}
@@ -280,9 +307,9 @@ function ListenScreenContent() {
             </div>
           ) : (
             <div className="w-full bg-white rounded-card border-2 border-neel/15 p-4 my-3">
-              <h2 className="font-heading font-bold text-heading text-neel mb-1">
+              <h1 className="font-heading font-bold text-heading text-neel mb-1">
                 {t("listen_title", state.language)}
-              </h2>
+              </h1>
               <p className="font-body text-body text-neel/80">
                 {t("listen_initial_prompt", state.language)}
               </p>

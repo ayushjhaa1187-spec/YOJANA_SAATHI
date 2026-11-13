@@ -40,9 +40,9 @@ export function SchemeCard({
             <SchemeIcon category={match.category} />
           </div>
           <div>
-            <h3 className="font-heading font-bold text-heading text-neel leading-snug">
+            <h2 className="font-heading font-bold text-heading text-neel leading-snug">
               {schemeName}
-            </h3>
+            </h2>
             {benefitText && (
               <p className="font-body text-small text-neel/75 mt-0.5">
                 {benefitText}
