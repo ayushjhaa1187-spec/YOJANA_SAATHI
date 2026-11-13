@@ -28,7 +28,7 @@ const GUIDED_FIELDS: (keyof Profile)[] = [
 ];
 
 const SAVITRI_DEMO_TEXT =
-  "मेरा पति नहीं रहे, दो बच्चे हैं, ज़मीन नहीं है। मेरी उम्र 58 साल है।";
+  "Mera pati nahi rahe, do bachche hain, zameen nahi hai. Meri umar 58 saal hai.";
 
 function ListenScreenContent() {
   const router = useRouter();
@@ -109,17 +109,18 @@ function ListenScreenContent() {
           setIsGuidedMode(true);
           const isDemo =
             searchParams.get("demo") === "1" ||
-            text.includes("pati nahi rahe") ||
+            text.toLowerCase().includes("pati nahi rahe") ||
             text.includes("पति नहीं रहे");
 
           if (isDemo) {
             const demoExtracted: Profile = {
               ...state.profile,
-              marital_status: "widowed",
-              gender: "female",
               age: 58,
+              gender: "female",
+              marital_status: "widowed",
               has_land: false,
               dependents: 2,
+              income_category: null,
             };
             dispatch({
               type: "PROFILE_UPDATED",

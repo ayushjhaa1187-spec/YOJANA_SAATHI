@@ -180,6 +180,21 @@ Autonomous implementation log tracking progress across build steps per README.md
 
 ---
 
+## Phase D: Demo Readiness, Demo Script & Legal Disclaimers
+- **Status:** COMPLETED
+- **What was done:**
+  - Implemented Savitri Devi demo mode path in `app/listen/page.tsx` (`SAVITRI_DEMO_TEXT = "Mera pati nahi rahe, do bachche hain, zameen nahi hai. Meri umar 58 saal hai."`).
+  - Added robust fallback: if LLM fails or API key is unconfigured, automatically initializes profile with `{ age: 58, gender: "female", marital_status: "widowed", has_land: false, dependents: 2, income_category: null }` and immediately surfaces the BPL question ("क्या आपके पास BPL / गरीबी रेखा का कार्ड है?") via quick chips.
+  - Authored `DEMO_SCRIPT.md`: comprehensive 90-second timeline with exact spoken lines in natural Hindi, step-by-step click actions, pre-demo hardware checklist (audio volume, TTS voice pack, permissions, airplane mode), and 4 contingency failure playbooks (mic noise, LLM 502, Wi-Fi drop, missing Hindi voice).
+  - Standardized legal disclaimer across all screen footers in `lib/i18n.ts`: explicit notice that results are indicative, data is sample, and the final decision rests solely with the government department.
+  - All 56 Vitest tests passing; Next.js production build succeeded.
+- **Assumed:**
+  - Live demo presenters will follow the 90-second timeline in `DEMO_SCRIPT.md` with either natural microphone speech or the 1-tap "नमूना सुनिए" button as backup.
+- **To Check:**
+  - Rehearse the 90-second demo using `DEMO_SCRIPT.md` on a mobile device.
+
+---
+
 ## Step 10: Polish, Visual Verification & Acceptance Test
 - **Status:** COMPLETED
 - **What was done:**

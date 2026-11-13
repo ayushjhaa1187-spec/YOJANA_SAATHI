@@ -71,7 +71,9 @@ describe("Phase C: Screen i18n & Language Switching", () => {
     expect(t("no_hindi_tts_notice", "en")).toContain("Hindi voice is not available");
 
     expect(t("disclaimer", "hi")).toContain("अंतिम फ़ैसला");
+    expect(t("disclaimer", "hi")).toContain("सांकेतिक");
     expect(t("disclaimer", "en")).toContain("Final eligibility is decided");
+    expect(t("disclaimer", "en")).toContain("indicative");
   });
 
   it("interpolates parameters in step indicator correctly", () => {

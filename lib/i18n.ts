@@ -7,7 +7,7 @@ export const translations = {
     app_subtitle: "सरकारी योजना सहायता",
     back: "पीछे जाएँ",
     offline_notice: "इंटरनेट नहीं है। जुड़ते ही फिर कोशिश होगी।",
-    disclaimer: "अंतिम फ़ैसला संबंधित सरकारी विभाग ही करेगा।",
+    disclaimer: "यह सांकेतिक जानकारी और नमूना डेटा है। अंतिम फ़ैसला संबंधित सरकारी विभाग ही करेगा।",
     retry: "फिर से कोशिश करें",
 
     // Home
@@ -101,7 +101,7 @@ export const translations = {
     app_subtitle: "Government Scheme Assistant",
     back: "Go Back",
     offline_notice: "No internet connection. Will retry automatically.",
-    disclaimer: "Final eligibility is decided by the government department.",
+    disclaimer: "Results are indicative and based on sample data. Final eligibility is decided by the respective government department.",
     retry: "Try Again",
 
     // Home
