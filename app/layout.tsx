@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Baloo_2, Noto_Sans_Devanagari } from "next/font/google";
+import { ConversationProvider } from "@/components/ConversationProvider";
 import "./globals.css";
 
 const baloo2 = Baloo_2({
@@ -36,9 +37,11 @@ export default function RootLayout({
   return (
     <html lang="hi" className={`${baloo2.variable} ${notoSansDevanagari.variable}`}>
       <body className="min-h-screen bg-dhuli text-neel font-body antialiased flex flex-col items-center">
-        <div className="w-full max-w-[480px] min-h-screen flex flex-col bg-dhuli">
-          {children}
-        </div>
+        <ConversationProvider>
+          <div className="w-full max-w-[480px] min-h-screen flex flex-col bg-dhuli">
+            {children}
+          </div>
+        </ConversationProvider>
       </body>
     </html>
   );

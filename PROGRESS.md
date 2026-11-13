@@ -32,3 +32,25 @@ Autonomous implementation log tracking progress across build steps per README.md
   - Check that HTTP 400 with `{ error: { code: "INVALID_INPUT" } }` is returned on malformed payload.
 
 ---
+
+## Step 5: Speech Understanding API & LLM Extraction
+- **Status:** COMPLETED
+- **What was done:**
+  - Implemented `lib/prompts.ts` with strict extraction system prompt (no inferences, Bhojpuri/Hindi dialect patterns, JSON-only).
+  - Implemented `lib/questions.ts` with static question bank per README section 7.5.
+  - Implemented `lib/llm.ts` with `extractJson` using `@google/genai` (structured JSON mode, temp 0, safe missing key error handling without leaking secrets).
+  - Implemented `lib/understand.ts` and `app/api/understand/route.ts` with injectable extractor, Zod validation, retry on invalid JSON, `mergeProfile`, deterministic scheme matching, and question bank selection.
+  - Implemented `tests/understand.test.ts` covering valid merging, 1-retry on invalid response, 502 `LLM_FAILED` on repeated invalid response, immutability of non-null fields, 400 `INVALID_INPUT` on empty transcript, and question bank lookup.
+  - Added `scripts/try-understand.ts` for testing against the real Gemini API.
+  - All 33 tests passed; production build succeeded.
+- **Assumed:**
+  - If `GEMINI_API_KEY` is not present, route handler returns 502 with code `LLM_FAILED`, triggering guided mode on the client.
+- **To Check:**
+  - Test `/api/understand` with curl or `scripts/try-understand.ts` once real `GEMINI_API_KEY` is set in `.env.local`:
+    ```bash
+    curl -X POST http://localhost:3000/api/understand \
+      -H "Content-Type: application/json" \
+      -d '{"language":"hi","transcript":"Mera pati nahi rahe, do bachche hain, zameen nahi hai. Meri umar 58 saal hai."}'
+    ```
+
+---
