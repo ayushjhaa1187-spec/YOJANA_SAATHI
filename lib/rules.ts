@@ -158,6 +158,7 @@ export function evaluate(p: Profile, s: Scheme): Match {
     name_en: s.name_en,
     category: s.category,
     benefit_text_hi: s.benefit_text_hi,
+    benefit_text_en: s.benefit_text_en,
   };
 }
 

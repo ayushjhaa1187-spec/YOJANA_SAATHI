@@ -91,3 +91,18 @@ Autonomous implementation log tracking progress across build steps per README.md
   - Test `/listen?demo=1` to observe the demo flow with zero voice hardware required.
 
 ---
+
+## Step 8: Results Screen & Sequential Audio Announcement
+- **Status:** COMPLETED
+- **What was done:**
+  - Implemented `components/results/EligibilityBadge.tsx` with color + icon + text (Tulsi green for eligible `✓ पात्र`, Kesar amber for needs confirmation `? पुष्टि करें`).
+  - Implemented `components/results/SchemeIcon.tsx` rendering category pictograms (`🪙` pension, `✚` health, `🌾` food, `🔥` energy, `🏠` housing).
+  - Implemented `components/results/SchemeCard.tsx` (Devanagari typography, 24px rounded card, 2px border, detail link, and individual read-aloud button).
+  - Implemented `app/results/page.tsx` with max 3 cards displayed by default, "और योजनाएँ" toggle for remaining matches, sequential read-aloud with Stop button, refresh redirect to `/` when session is empty, and permanent department disclaimer.
+  - All 41 tests passed; production build succeeded.
+- **Assumed:**
+  - Refreshing on `/results` without in-memory state redirects to `/` per README Section 12.
+- **To Check:**
+  - Verify that sequential read-aloud correctly announces top 3 schemes and can be interrupted anytime with the Stop button.
+
+---

@@ -62,6 +62,7 @@ export type Match = {
   name_en?: string;
   category?: string;
   benefit_text_hi?: string;
+  benefit_text_en?: string;
 };
 
 export type Language = "hi" | "en";
