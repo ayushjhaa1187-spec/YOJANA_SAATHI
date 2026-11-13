@@ -17,3 +17,18 @@ Autonomous implementation log tracking progress across build steps per README.md
   - Verify that top 3 demo profile results match expectations (`widow_pension`, `pmjay`, `nfsa_ration`).
 
 ---
+
+## Step 4: Core Matching & Data API Routes
+- **Status:** COMPLETED
+- **What was done:**
+  - Implemented `app/api/match/route.ts`: accepts `{ profile }`, validates partial profile with `ProfileSchema`, fills missing keys with null, runs `matchAll`, and returns formatted matches.
+  - Implemented `app/api/schemes/[id]/documents/route.ts`: returns required documents for a scheme or 404 `NOT_FOUND`.
+  - Implemented `app/api/centers/route.ts`: returns centers filtered by `district`, falling back to all centers if unknown or omitted.
+  - Implemented direct route handler tests in `tests/routes.test.ts` (7 tests covering valid match, invalid input, document checklist, 404, and center district filtering).
+  - All 27 tests passed; `npm run build` succeeded.
+- **Assumed:**
+  - `POST /api/match` allows partial profiles and fills omitted fields with `null`.
+- **To Check:**
+  - Check that HTTP 400 with `{ error: { code: "INVALID_INPUT" } }` is returned on malformed payload.
+
+---
