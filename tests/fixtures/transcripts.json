@@ -1,0 +1,322 @@
+[
+  {
+    "id": "t01",
+    "case_type": "widow",
+    "script": "roman",
+    "language": "hi",
+    "transcript": "Mera pati nahi rahe, do bachche hain, zameen nahi hai. Meri umar 58 saal hai.",
+    "expected": {
+      "marital_status": "widowed",
+      "gender": "female",
+      "age": 58,
+      "has_land": false,
+      "dependents": 2
+    }
+  },
+  {
+    "id": "t02",
+    "case_type": "widow",
+    "script": "devanagari",
+    "language": "hi",
+    "transcript": "मेरे पति का देहांत हो चुका है, मैं विधवा हूँ और मेरी उम्र 52 वर्ष है।",
+    "expected": {
+      "marital_status": "widowed",
+      "gender": "female",
+      "age": 52
+    }
+  },
+  {
+    "id": "t03",
+    "case_type": "widow",
+    "script": "devanagari",
+    "language": "hi",
+    "transcript": "पति नहीं रहे, तीन बच्चे हैं, घर कच्चा है और हम बीपीएल कार्डधारी हैं।",
+    "expected": {
+      "marital_status": "widowed",
+      "gender": "female",
+      "dependents": 3,
+      "has_pucca_house": false,
+      "income_category": "BPL"
+    }
+  },
+  {
+    "id": "t04",
+    "case_type": "old_age",
+    "script": "roman",
+    "language": "hi",
+    "transcript": "Meri umar 65 saal hai, shareer se kaam nahi hota, BPL card hai.",
+    "expected": {
+      "age": 65,
+      "income_category": "BPL"
+    }
+  },
+  {
+    "id": "t05",
+    "case_type": "old_age",
+    "script": "devanagari",
+    "language": "hi",
+    "transcript": "मेरी उम्र 72 साल है, मैं वृद्ध पुरुष हूँ, बिहार के गया जिले से हूँ।",
+    "expected": {
+      "age": 72,
+      "gender": "male",
+      "state": "Bihar",
+      "district": "Gaya"
+    }
+  },
+  {
+    "id": "t06",
+    "case_type": "old_age",
+    "script": "roman",
+    "language": "hi",
+    "transcript": "Umar sattar saal ho gayi hai, zameen jaidad kuch nahi hai.",
+    "expected": {
+      "age": 70,
+      "has_land": false
+    }
+  },
+  {
+    "id": "t07",
+    "case_type": "hindi_words_number",
+    "script": "roman",
+    "language": "hi",
+    "transcript": "Meri umar pachpan saal hai, pati guzar gaye hain.",
+    "expected": {
+      "age": 55,
+      "marital_status": "widowed",
+      "gender": "female"
+    }
+  },
+  {
+    "id": "t08",
+    "case_type": "hindi_words_number",
+    "script": "devanagari",
+    "language": "hi",
+    "transcript": "मेरी उम्र अड़तालीस साल है, शादीशुदा हूँ, दो लड़के हैं।",
+    "expected": {
+      "age": 48,
+      "marital_status": "married",
+      "dependents": 2
+    }
+  },
+  {
+    "id": "t09",
+    "case_type": "hindi_words_number",
+    "script": "roman",
+    "language": "hi",
+    "transcript": "Meri aayu saath saal hai aur hum garib parivar se hain.",
+    "expected": {
+      "age": 60,
+      "income_category": "low"
+    }
+  },
+  {
+    "id": "t10",
+    "case_type": "correction",
+    "script": "roman",
+    "language": "hi",
+    "transcript": "Umar 50... nahi nahi, meri umar 60 saal hai.",
+    "expected": {
+      "age": 60
+    }
+  },
+  {
+    "id": "t11",
+    "case_type": "correction",
+    "script": "devanagari",
+    "language": "hi",
+    "transcript": "पहले गलत बोल दिया, मैं अविवाहित नहीं विधवा हूँ, उम्र 45 है।",
+    "expected": {
+      "marital_status": "widowed",
+      "gender": "female",
+      "age": 45
+    }
+  },
+  {
+    "id": "t12",
+    "case_type": "correction",
+    "script": "roman",
+    "language": "hi",
+    "transcript": "Zameen hai... arre nahi, zameen nahi hai hamare paas.",
+    "expected": {
+      "has_land": false
+    }
+  },
+  {
+    "id": "t13",
+    "case_type": "dialect",
+    "script": "devanagari",
+    "language": "hi",
+    "transcript": "हमर घर में पक्का मकान नइखे, राशन कार्ड बनल बा।",
+    "expected": {
+      "has_pucca_house": false,
+      "has_ration_card": true
+    }
+  },
+  {
+    "id": "t14",
+    "case_type": "dialect",
+    "script": "roman",
+    "language": "hi",
+    "transcript": "Khet baari naahi baate, aapan umir 62 baris ba.",
+    "expected": {
+      "has_land": false,
+      "age": 62
+    }
+  },
+  {
+    "id": "t15",
+    "case_type": "dialect",
+    "script": "devanagari",
+    "language": "hi",
+    "transcript": "पति ना रहथिन, छोट-छोट तीन गो लइका बा, उम्र 42 बछर।",
+    "expected": {
+      "marital_status": "widowed",
+      "gender": "female",
+      "dependents": 3,
+      "age": 42
+    }
+  },
+  {
+    "id": "t16",
+    "case_type": "english",
+    "script": "english",
+    "language": "en",
+    "transcript": "I am a 62 year old widow living in Gaya Bihar, having no land.",
+    "expected": {
+      "age": 62,
+      "marital_status": "widowed",
+      "gender": "female",
+      "district": "Gaya",
+      "state": "Bihar",
+      "has_land": false
+    }
+  },
+  {
+    "id": "t17",
+    "case_type": "english",
+    "script": "english",
+    "language": "en",
+    "transcript": "My age is 70 years, male, and we belong to BPL category.",
+    "expected": {
+      "age": 70,
+      "gender": "male",
+      "income_category": "BPL"
+    }
+  },
+  {
+    "id": "t18",
+    "case_type": "english",
+    "script": "english",
+    "language": "en",
+    "transcript": "I am an 18 year old female from a low income family, no pucca house.",
+    "expected": {
+      "age": 18,
+      "gender": "female",
+      "income_category": "low",
+      "has_pucca_house": false
+    }
+  },
+  {
+    "id": "t19",
+    "case_type": "housing_lpg",
+    "script": "devanagari",
+    "language": "hi",
+    "transcript": "मैं महिला हूँ, उम्र 25 साल है, गैस चूल्हा नहीं है और आय कम है।",
+    "expected": {
+      "gender": "female",
+      "age": 25,
+      "income_category": "low"
+    }
+  },
+  {
+    "id": "t20",
+    "case_type": "housing_lpg",
+    "script": "roman",
+    "language": "hi",
+    "transcript": "Mera kachha ghar hai, pucca makaan nahi hai, BPL card bana hua hai.",
+    "expected": {
+      "has_pucca_house": false,
+      "income_category": "BPL",
+      "has_ration_card": true
+    }
+  },
+  {
+    "id": "t21",
+    "case_type": "family_bpl",
+    "script": "roman",
+    "language": "hi",
+    "transcript": "Hamare parivar mein paanch log hain, BPL card hai, Patna district se hain.",
+    "expected": {
+      "dependents": 5,
+      "income_category": "BPL",
+      "has_ration_card": true,
+      "district": "Patna"
+    }
+  },
+  {
+    "id": "t22",
+    "case_type": "no_info",
+    "script": "devanagari",
+    "language": "hi",
+    "transcript": "नमस्ते भाई साहब, आप कैसे हैं?",
+    "expected": {
+      "age": null,
+      "marital_status": null,
+      "gender": null,
+      "income_category": null,
+      "has_land": null
+    }
+  },
+  {
+    "id": "t23",
+    "case_type": "no_info",
+    "script": "roman",
+    "language": "hi",
+    "transcript": "Hello, mujhe sarkari yojana ki jaankari chahiye.",
+    "expected": {
+      "age": null,
+      "marital_status": null,
+      "gender": null,
+      "income_category": null,
+      "has_land": null
+    }
+  },
+  {
+    "id": "t24",
+    "case_type": "no_info",
+    "script": "devanagari",
+    "language": "hi",
+    "transcript": "आज धूप बहुत तेज़ है, क्या आप मेरी बात सुन रहे हैं?",
+    "expected": {
+      "age": null,
+      "marital_status": null,
+      "gender": null,
+      "income_category": null,
+      "has_land": null
+    }
+  },
+  {
+    "id": "t25",
+    "case_type": "no_info",
+    "script": "english",
+    "language": "en",
+    "transcript": "Good morning assistant, can you help me today?",
+    "expected": {
+      "age": null,
+      "marital_status": null,
+      "gender": null,
+      "income_category": null,
+      "has_land": null
+    }
+  },
+  {
+    "id": "t26",
+    "case_type": "single_field_answer",
+    "script": "devanagari",
+    "language": "hi",
+    "transcript": "58",
+    "expected": {
+      "age": 58
+    }
+  }
+]

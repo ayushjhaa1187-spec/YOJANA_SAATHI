@@ -121,6 +121,37 @@ Autonomous implementation log tracking progress across build steps per README.md
 
 ---
 
+## Phase A: Backend Robustness
+- **Status:** COMPLETED
+- **What was done:**
+  - Implemented `lib/rateLimit.ts`: in-memory per-IP rate limiter (default: 30 requests per 10-minute window for `/api/understand`), returning 429 `RATE_LIMITED` with `Retry-After` header. Configurable via constants.
+  - Implemented request size constraints in `lib/understand.ts`: `transcript` strictly capped at 1000 characters (returns 400 `INVALID_INPUT` on exceed). Sanitizes `currentProfile` to strip any unknown/injected fields.
+  - Privacy audit & cleanup: Replaced all raw error object logging with request ID and error codes only (`[req_id] ErrorCode: ...`). Zero user transcripts, profiles, or API keys are logged anywhere on the server.
+  - Added 12-second timeout around LLM calls in `lib/llm.ts` via `LLMTimeoutError`, safely mapped to HTTP 502 `LLM_FAILED`.
+  - Implemented 5 tests in `tests/robustness.test.ts` verifying rate limiting, transcript length validation, timeout mapping, console privacy (spying on `console.log` and `console.error`), and unknown profile property stripping.
+  - All 46 tests passed; production build succeeded.
+- **Assumed:**
+  - In-memory rate limiting is ephemeral and resets on serverless cold starts; it serves as a baseline protection layer without requiring an external Redis store.
+- **To Check:**
+  - Test rapid repeated calls to `/api/understand` to confirm HTTP 429 `RATE_LIMITED` response after 30 hits.
+
+---
+
+## Phase B: Extraction Quality Harness & Fixtures
+- **Status:** COMPLETED
+- **What was done:**
+  - Created `tests/fixtures/transcripts.json`: 26 comprehensive realistic spoken utterances in Hindi, Bhojpuri, Magahi, and English. Covers edge cases: Hindi word-numbers ("पचपन", "साठ"), self-corrections ("नहीं नहीं, 62 नहीं 60..."), dialects ("नाही बा", "पति ना रहथिन"), and conversational filler with zero profile fields.
+  - Enhanced system prompt in `lib/prompts.ts`: added explicit instructions for Hindi word-numbers, self-corrections (always prioritizing the latest corrected value), and dialect forms without ever hallucinating or inferring eligibility.
+  - Implemented `scripts/eval-extraction.ts`: command-line evaluation harness comparing LLM extraction against ground-truth profiles across field-level precision and recall. Gracefully skips without error if `GEMINI_API_KEY` is not present.
+  - Implemented `tests/eval.test.ts`: 3 unit tests verifying evaluation logic, perfect scoring on matching fixtures, and accurate mismatch reporting.
+  - Verified with `npm test` (49 tests passing) and `npm run build` (success).
+- **Assumed:**
+  - Evaluation harness runs in mock/unit test mode during CI/local test suite and only hits live Gemini API when explicitly invoked via `npx tsx scripts/eval-extraction.ts` with `GEMINI_API_KEY`.
+- **To Check:**
+  - Run `npx tsx scripts/eval-extraction.ts` with valid `GEMINI_API_KEY` to benchmark live extraction accuracy against the 26 fixtures.
+
+---
+
 ## Step 10: Polish, Visual Verification & Acceptance Test
 - **Status:** COMPLETED
 - **What was done:**
