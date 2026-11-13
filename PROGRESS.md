@@ -195,6 +195,29 @@ Autonomous implementation log tracking progress across build steps per README.md
 
 ---
 
+## Phase E: Documentation, Packaging & Data Verification Checklist
+- **Status:** COMPLETED
+- **What was done:**
+  - **Updated `README.md`**:
+    - Reflected exact, complete project directory tree including all newly created modules (`lib/rateLimit.ts`, `lib/understand.ts`, `tests/fixtures/transcripts.json`, `scripts/eval-extraction.ts`, etc.).
+    - Documented system architecture, environment variables, secret hygiene, and step-by-step local run and test guides.
+    - Added Section 20 "Known Limitations & Security Architecture" outlining draft scheme conditions, sample CSC directories, in-memory rate limiting, and zero-PII data retention.
+  - **Credential & Secret Protection**:
+    - Checked `.gitignore` to ensure `.env*.local` and `.env` are strictly excluded from git.
+    - Scanned entire repository and commit history (`git grep -i "AIza"` and `git log -S "AIza"`); confirmed 0 leaked keys or credentials.
+  - **Authored `DATA_VERIFICATION.md`**:
+    - Created formal verification tracking matrix covering all 6 seed schemes, 9 documents, and 11 sample service centers.
+    - Linked direct government portals (`nsap.nic.in`, `pmjay.gov.in`, `myscheme.gov.in`, `pmayg.nic.in`) and established procedure for promoting draft values to verified status.
+  - **Authored `ACTIVITY2_PROMPT.md`**:
+    - Created concise, self-contained re-creation prompt (< 500 words, exactly 385 words) specifying the Savitri Devi anchor persona, voice-first mobile-first experience, pure deterministic rules engine vs. LLM extraction split, design tokens, and zero-secrets architecture.
+  - All 56 Vitest tests passing; Next.js production build succeeded.
+- **Assumed:**
+  - Field workers and civic volunteers will consult `DATA_VERIFICATION.md` before adapting scheme thresholds for regional state variations.
+- **To Check:**
+  - Confirm that `ACTIVITY2_PROMPT.md` is self-contained and functions as a standalone prompt for AI code generators.
+
+---
+
 ## Step 10: Polish, Visual Verification & Acceptance Test
 - **Status:** COMPLETED
 - **What was done:**
