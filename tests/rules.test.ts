@@ -227,7 +227,6 @@ describe("Pure Deterministic Rules Engine (lib/rules.ts)", () => {
       income_category: "BPL",
     };
     const matches = matchAll(demoProfile, schemes);
-    console.log("DEMO_PROFILE_RESULTS:", JSON.stringify(matches.slice(0, 3), null, 2));
     expect(matches.length).toBeGreaterThanOrEqual(3);
   });
 });
