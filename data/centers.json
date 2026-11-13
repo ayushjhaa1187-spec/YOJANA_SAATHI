@@ -1,0 +1,79 @@
+[
+  {
+    "id": "csc_gaya_1",
+    "name": "CSC बोधगया (नमूना)",
+    "type": "CSC",
+    "district": "Gaya",
+    "address": "पता जोड़ना बाकी है"
+  },
+  {
+    "id": "csc_gaya_2",
+    "name": "CSC मानपुर (नमूना)",
+    "type": "CSC",
+    "district": "Gaya",
+    "address": "पता जोड़ना बाकी है"
+  },
+  {
+    "id": "csc_gaya_3",
+    "name": "CSC शेरघाटी (नमूना)",
+    "type": "CSC",
+    "district": "Gaya",
+    "address": "पता जोड़ना बाकी है"
+  },
+  {
+    "id": "block_gaya_1",
+    "name": "प्रखंड कार्यालय गया सदर (नमूना)",
+    "type": "Block Office",
+    "district": "Gaya",
+    "address": "पता जोड़ना बाकी है"
+  },
+  {
+    "id": "block_gaya_2",
+    "name": "प्रखंड कार्यालय बेलागंज (नमूना)",
+    "type": "Block Office",
+    "district": "Gaya",
+    "address": "पता जोड़ना बाकी है"
+  },
+  {
+    "id": "csc_patna_1",
+    "name": "CSC दानापुर (नमूना)",
+    "type": "CSC",
+    "district": "Patna",
+    "address": "पता जोड़ना बाकी है"
+  },
+  {
+    "id": "block_patna_1",
+    "name": "प्रखंड कार्यालय पटना सदर (नमूना)",
+    "type": "Block Office",
+    "district": "Patna",
+    "address": "पता जोड़ना बाकी है"
+  },
+  {
+    "id": "csc_varanasi_1",
+    "name": "CSC काशी (नमूना)",
+    "type": "CSC",
+    "district": "Varanasi",
+    "address": "पता जोड़ना बाकी है"
+  },
+  {
+    "id": "block_varanasi_1",
+    "name": "प्रखंड कार्यालय वाराणसी (नमूना)",
+    "type": "Block Office",
+    "district": "Varanasi",
+    "address": "पता जोड़ना बाकी है"
+  },
+  {
+    "id": "csc_lucknow_1",
+    "name": "CSC लखनऊ (नमूना)",
+    "type": "CSC",
+    "district": "Lucknow",
+    "address": "पता जोड़ना बाकी है"
+  },
+  {
+    "id": "block_lucknow_1",
+    "name": "प्रखंड कार्यालय लखनऊ (नमूना)",
+    "type": "Block Office",
+    "district": "Lucknow",
+    "address": "पता जोड़ना बाकी है"
+  }
+]

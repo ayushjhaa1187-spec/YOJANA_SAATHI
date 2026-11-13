@@ -1,0 +1,104 @@
+[
+  {
+    "id": "widow_pension",
+    "name_en": "Widow Pension (NSAP)",
+    "name_hi": "विधवा पेंशन (NSAP)",
+    "category": "pension",
+    "benefit_text_en": "Monthly pension for eligible widows",
+    "benefit_text_hi": "पात्र विधवाओं को हर महीने पेंशन",
+    "apply_url": "https://nsap.nic.in",
+    "state": null,
+    "conditions": [
+      { "field": "marital_status", "op": "==", "value": "widowed" },
+      { "field": "age", "op": ">=", "value": 40 },
+      { "field": "income_category", "op": "in", "value": ["BPL", "low"] }
+    ],
+    "document_ids": ["aadhaar", "bank_passbook", "death_certificate", "income_certificate", "photo"],
+    "benefit_rank": 1,
+    "verified": false
+  },
+  {
+    "id": "old_age_pension",
+    "name_en": "Old Age Pension (NSAP)",
+    "name_hi": "वृद्धावस्था पेंशन (NSAP)",
+    "category": "pension",
+    "benefit_text_en": "Monthly pension for eligible senior citizens",
+    "benefit_text_hi": "पात्र बुजुर्गों को हर महीने पेंशन",
+    "apply_url": "https://nsap.nic.in",
+    "state": null,
+    "conditions": [
+      { "field": "age", "op": ">=", "value": 60 },
+      { "field": "income_category", "op": "in", "value": ["BPL", "low"] }
+    ],
+    "document_ids": ["aadhaar", "bank_passbook", "age_proof", "income_certificate", "photo"],
+    "benefit_rank": 2,
+    "verified": false
+  },
+  {
+    "id": "pmjay",
+    "name_en": "Ayushman Bharat PM-JAY",
+    "name_hi": "आयुष्मान भारत (PM-JAY)",
+    "category": "health",
+    "benefit_text_en": "Free health insurance coverage for hospital care",
+    "benefit_text_hi": "अस्पताल में मुफ़्त इलाज के लिए स्वास्थ्य सुरक्षा",
+    "apply_url": "https://pmjay.gov.in",
+    "state": null,
+    "conditions": [
+      { "field": "income_category", "op": "in", "value": ["BPL", "low"] }
+    ],
+    "document_ids": ["aadhaar", "bpl_card", "residence_certificate"],
+    "benefit_rank": 3,
+    "verified": false
+  },
+  {
+    "id": "nfsa_ration",
+    "name_en": "NFSA Ration Card",
+    "name_hi": "राशन कार्ड (NFSA)",
+    "category": "food",
+    "benefit_text_en": "Subsidised food grains under food security scheme",
+    "benefit_text_hi": "खाद्य सुरक्षा के तहत रियायती या मुफ़्त राशन",
+    "apply_url": "https://nfsa.gov.in",
+    "state": null,
+    "conditions": [
+      { "field": "income_category", "op": "in", "value": ["BPL", "low"] }
+    ],
+    "document_ids": ["aadhaar", "income_certificate", "residence_certificate", "photo"],
+    "benefit_rank": 4,
+    "verified": false
+  },
+  {
+    "id": "ujjwala",
+    "name_en": "PM Ujjwala Yojana (LPG)",
+    "name_hi": "पीएम उज्ज्वला योजना (LPG)",
+    "category": "energy",
+    "benefit_text_en": "Free LPG gas cylinder connection",
+    "benefit_text_hi": "मुफ़्त गैस कनेक्शन एवं सिलेंडर सहायता",
+    "apply_url": "https://www.pmuy.gov.in",
+    "state": null,
+    "conditions": [
+      { "field": "gender", "op": "==", "value": "female" },
+      { "field": "age", "op": ">=", "value": 18 },
+      { "field": "income_category", "op": "in", "value": ["BPL", "low"] }
+    ],
+    "document_ids": ["aadhaar", "bpl_card", "bank_passbook", "photo"],
+    "benefit_rank": 5,
+    "verified": false
+  },
+  {
+    "id": "pmay_g",
+    "name_en": "PM Awas Yojana Gramin",
+    "name_hi": "पीएम आवास योजना (ग्रामीण)",
+    "category": "housing",
+    "benefit_text_en": "Financial assistance for building a pucca house",
+    "benefit_text_hi": "पक्का मकान बनाने के लिए आर्थिक सहायता",
+    "apply_url": "https://pmayg.nic.in",
+    "state": null,
+    "conditions": [
+      { "field": "has_pucca_house", "op": "==", "value": false },
+      { "field": "income_category", "op": "in", "value": ["BPL", "low"] }
+    ],
+    "document_ids": ["aadhaar", "bank_passbook", "house_proof", "income_certificate"],
+    "benefit_rank": 6,
+    "verified": false
+  }
+]

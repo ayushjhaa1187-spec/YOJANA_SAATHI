@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-neel: #1B2A6B;
+  --color-haldi: #F5B700;
+  --color-dhuli: #F1F4FA;
+  --color-tulsi: #1E7B4F;
+  --color-kesar: #C2600A;
+  --color-mirchi: #C6372B;
+}
+
+body {
+  background-color: #F1F4FA;
+  color: #1B2A6B;
+  font-family: var(--font-noto-sans-devanagari), system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Accessible focus ring: 3px Neel on every interactive element */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid #1B2A6B;
+  outline-offset: 2px;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

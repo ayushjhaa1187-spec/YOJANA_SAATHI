@@ -1,0 +1,56 @@
+[
+  {
+    "id": "aadhaar",
+    "name_en": "Aadhaar Card",
+    "name_hi": "आधार कार्ड",
+    "where_to_get_hi": "नज़दीकी आधार केंद्र या CSC"
+  },
+  {
+    "id": "bank_passbook",
+    "name_en": "Bank Passbook",
+    "name_hi": "बैंक पासबुक",
+    "where_to_get_hi": "अपनी बैंक शाखा से"
+  },
+  {
+    "id": "death_certificate",
+    "name_en": "Husband's Death Certificate",
+    "name_hi": "पति का मृत्यु प्रमाणपत्र",
+    "where_to_get_hi": "ग्राम पंचायत या नगर निकाय कार्यालय"
+  },
+  {
+    "id": "income_certificate",
+    "name_en": "Income Certificate",
+    "name_hi": "आय प्रमाणपत्र",
+    "where_to_get_hi": "प्रखंड/अंचल कार्यालय या CSC"
+  },
+  {
+    "id": "bpl_card",
+    "name_en": "BPL / Ration Card",
+    "name_hi": "BPL / राशन कार्ड",
+    "where_to_get_hi": "प्रखंड आपूर्ति कार्यालय"
+  },
+  {
+    "id": "photo",
+    "name_en": "Passport Size Photograph",
+    "name_hi": "पासपोर्ट साइज़ फोटो",
+    "where_to_get_hi": "नज़दीकी फोटो की दुकान"
+  },
+  {
+    "id": "age_proof",
+    "name_en": "Age Proof Document",
+    "name_hi": "उम्र का प्रमाण",
+    "where_to_get_hi": "आधार, स्कूल प्रमाणपत्र या जन्म प्रमाणपत्र"
+  },
+  {
+    "id": "residence_certificate",
+    "name_en": "Residence Certificate",
+    "name_hi": "निवास प्रमाणपत्र",
+    "where_to_get_hi": "प्रखंड कार्यालय या CSC"
+  },
+  {
+    "id": "house_proof",
+    "name_en": "Proof of Housing Condition",
+    "name_hi": "घर की स्थिति का प्रमाण",
+    "where_to_get_hi": "ग्राम पंचायत"
+  }
+]
