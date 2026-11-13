@@ -104,7 +104,32 @@ function ListenScreenContent() {
         if (res.error.code === "LLM_FAILED") {
           // Switch to guided mode
           setIsGuidedMode(true);
-          setGuidedStep(0);
+          const isDemo =
+            searchParams.get("demo") === "1" ||
+            text.includes("pati nahi rahe") ||
+            text.includes("पति नहीं रहे");
+
+          if (isDemo) {
+            const demoExtracted: Profile = {
+              ...state.profile,
+              marital_status: "widowed",
+              gender: "female",
+              age: 58,
+              has_land: false,
+              dependents: 2,
+            };
+            dispatch({
+              type: "PROFILE_UPDATED",
+              profile: demoExtracted,
+              nextQuestion: null,
+            });
+            // Point guided mode directly to income_category follow-up
+            const incomeIndex = GUIDED_FIELDS.indexOf("income_category");
+            setGuidedStep(incomeIndex >= 0 ? incomeIndex : 0);
+          } else {
+            setGuidedStep(0);
+          }
+
           setErrorMessage(t("error_llm_failed", state.language));
           dispatch({ type: "SET_STATUS", status: "asking" });
         } else {

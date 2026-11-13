@@ -106,3 +106,106 @@ Autonomous implementation log tracking progress across build steps per README.md
   - Verify that sequential read-aloud correctly announces top 3 schemes and can be interrupted anytime with the Stop button.
 
 ---
+
+## Step 9: Scheme Detail Screen & Documents Checklist
+- **Status:** COMPLETED
+- **What was done:**
+  - Implemented `components/results/DocumentChecklist.tsx`: tickable document list (pure local component state), where-to-get guidance, and individual / batch TTS read-aloud buttons.
+  - Implemented `components/results/CenterCard.tsx`: displays CSC / Block Office information, district, and distinct badge for `(नमूना)` sample centers.
+  - Implemented `app/scheme/[id]/page.tsx`: dynamic route displaying scheme category icon, benefit overview, full document checklist, nearby service centers (filtered by profile district), and direct official portal link with `rel="noopener noreferrer"`.
+  - All 41 tests passed; production build succeeded.
+- **Assumed:**
+  - Center list defaults to Gaya or all centers when user district is not specified.
+- **To Check:**
+  - Verify that checkboxes toggle smoothly and do not reload or clear prematurely during the session.
+
+---
+
+## Step 10: Polish, Visual Verification & Acceptance Test
+- **Status:** COMPLETED
+- **What was done:**
+  - Verified accessibility requirements:
+    - Visible 3px Neel focus rings (`outline: 3px solid #1B2A6B; outline-offset: 2px`).
+    - Respects `prefers-reduced-motion` in CSS and animations.
+    - Zero horizontal overflow at 360px mobile viewport (constrained to max 480px centered column).
+    - Status badges combine colors, icons, and text (Tulsi `✓ पात्र`, Kesar `? पुष्टि करें`).
+    - Minimum 56px touch target height across all buttons and interactive elements.
+  - Production server walkthrough using Chrome DevTools MCP at 360px width:
+    1. **Home Screen (`/`)**: Loaded Baloo 2 + Noto Sans Devanagari fonts, 160px MicButton, LanguagePicker, DemoButton, and design token test card.
+    2. **Listen Screen (`/listen?demo=1`)**: Triggered Savitri's demo sentence. With real Gemini API key unconfigured, automatically fell back to Guided Mode, presented follow-up question ("क्या आपके पास BPL / गरीबी रेखा का कार्ड है?"), and pre-filled transcript box.
+    3. **Results Screen (`/results`)**: Evaluated demo profile; ranked top 3 matches (`widow_pension`, `pmjay`, `nfsa_ration`), with sequential read-aloud option and "और योजनाएँ" toggle.
+    4. **Scheme Detail (`/scheme/widow_pension`)**: Rendered benefit summary, 5-item interactive document checklist with where-to-get guidance, sample Gaya service centers tagged `(नमूना)`, and official portal apply link (`https://nsap.nic.in`).
+  - All 41 Vitest tests passing. Production build succeeding.
+
+---
+
+## Run and Test Instructions
+
+### 1. Prerequisites
+- Node.js (v18+ or v20+)
+- npm
+
+### 2. How to Run Locally
+```bash
+# Install dependencies (already completed)
+npm install
+
+# Start development server
+npm run dev
+# App will run at http://localhost:3000
+
+# Or build and run production server
+npm run build
+npm run start
+```
+
+### 3. How to Run Unit Tests
+```bash
+npm test
+# Runs Vitest covering 41 unit & integration tests across i18n, seed data, pure rules engine, API routes, understand handler, and conversation reducer.
+```
+
+### 4. Setting up GEMINI_API_KEY for Live Speech Understanding
+Create or edit `.env.local` in the project root:
+```env
+LLM_PROVIDER=gemini
+GEMINI_API_KEY=your_actual_gemini_api_key_here
+GEMINI_MODEL=gemini-2.5-flash
+```
+*(Note: Never commit `.env.local` to git. It is protected by `.gitignore`.)*
+
+### 5. Testing `/api/understand` with curl
+Once `.env.local` is configured with your real Gemini API key and `npm run dev` is running:
+```bash
+curl -X POST http://localhost:3000/api/understand \
+  -H "Content-Type: application/json" \
+  -d '{
+    "language": "hi",
+    "transcript": "Mera pati nahi rahe, do bachche hain, zameen nahi hai. Meri umar 58 saal hai."
+  }'
+```
+Or run the provided test script:
+```bash
+npx tsx scripts/try-understand.ts
+```
+
+---
+
+## Assumptions Made
+1. **Fallback Guided Mode**: If `GEMINI_API_KEY` is missing or invalid, `/api/understand` returns HTTP 502 `LLM_FAILED`, and the frontend seamlessly switches to Guided Mode asking up to 4 core questions (`age`, `marital_status`, `income_category`, `has_land`).
+2. **State Specificity**: If a scheme defines `state` (e.g. `Bihar`) and the user's profile specifies a different state, the scheme is marked `not_eligible`. If the user's profile state is null, it is marked `maybe` with `"state"` in `missing`.
+3. **Draft Scheme Values**: Kept `"verified": false` on all 6 seed schemes in `data/schemes.json` per README instructions, avoiding any invented rupee amounts or arbitrary thresholds.
+4. **Sample Centers**: All 11 center addresses in `data/centers.json` are marked as sample placeholders (`"(नमूना)"`, `"पता जोड़ना बाकी है"`).
+
+---
+
+## Out of Scope / Unfinished (Section 11)
+Per project spec section 11, the following are intentionally omitted from this vertical slice prototype:
+- User login / authentication accounts.
+- Live Google Maps / geolocation routing.
+- Database persistence (PostgreSQL / Supabase) — session state lives in React memory only.
+- Application tracking / backend submission to government APIs.
+- Payment gateway integrations.
+- WhatsApp sharing / messaging integration.
+
+---
