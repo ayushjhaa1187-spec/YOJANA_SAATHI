@@ -72,3 +72,22 @@ Autonomous implementation log tracking progress across build steps per README.md
   - Verify `useSpeechRecognition` behaves properly on non-Chrome browsers (falls back gracefully to textarea).
 
 ---
+
+## Step 7: Listen Screen, Voice Loop & Guided Mode
+- **Status:** COMPLETED
+- **What was done:**
+  - Implemented `app/listen/page.tsx` with full conversation controller loop per README section 9.4.
+  - Implemented `components/convo/QuestionCard.tsx` (Devanagari Baloo 2 font, 28px, TTS read-aloud button).
+  - Implemented `components/convo/QuickChips.tsx` (56px touch target chips, 999px radius).
+  - Implemented `components/voice/TranscriptBox.tsx` (editable `<textarea>`, Wispr Flow target, confirmation Send button).
+  - Implemented `components/layout/StepDots.tsx` (visual 3-step progress dots).
+  - Implemented feedback components: `ErrorBanner.tsx`, `OfflineBanner.tsx`, and `Loader.tsx`.
+  - Implemented GUIDED MODE: if `/api/understand` returns `LLM_FAILED`, switches to fixed questions (`age`, `marital_status`, `income_category`, `has_land`) with chips and typed inputs, merging locally with `mergeProfile` and executing `/api/match`.
+  - Handled edge cases: mic denied, unsupported browser fallback, autostart, and Savitri demo text injection.
+  - All 41 tests passed; production build succeeded.
+- **Assumed:**
+  - Guided mode asks up to 4 core profile fields in deterministic order if LLM fails or is unconfigured.
+- **To Check:**
+  - Test `/listen?demo=1` to observe the demo flow with zero voice hardware required.
+
+---
