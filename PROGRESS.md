@@ -1,7 +1,68 @@
-# Yojana Saathi - Progress Log
+# Yojana Saathi (योजना साथी) — Autonomous Progress & Verification Log
 
-## Summary
-Autonomous implementation log tracking progress across build steps per README.md section 15.
+## Executive Summary & Final Verification (Phase F Complete)
+
+- **Project Status**: PRODUCTION-READY VERTICAL SLICE COMPLETED
+- **Autonomous Phases Completed**:
+  - **Phase 0**: Pre-run integrity check & environment audit.
+  - **Phase A**: Backend robustness (in-memory rate limiting, 1000-char transcript cap, privacy audit, 12s LLM timeout).
+  - **Phase B**: Extraction quality harness & test fixtures (26 realistic transcripts in Hindi, Bhojpuri, Magahi; command-line eval runner).
+  - **Phase C**: Frontend quality, accessibility & voice robustness (`aria-live="polite"`, 360px/412px/1024px responsive design, heading hierarchy, sub-16px text removal, `hasHindiVoice` device notice).
+  - **Phase D**: Demo readiness (`DEMO_SCRIPT.md` 90-second script & contingency playbooks, Savitri Devi demo fallback path, standardized legal disclaimer).
+  - **Phase E**: Documentation & packaging (`README.md` complete rewrite, `DATA_VERIFICATION.md` official checklist, `ACTIVITY2_PROMPT.md` < 500 words, 0 leaked credentials).
+  - **Phase F**: Final end-to-end verification (56/56 passing Vitest tests, production Next.js build clean, 360px DevTools live walkthrough verified).
+
+### Automated Test Suite Metrics
+- **Test Files**: 9 passed (9/9)
+- **Total Tests**: 56 passed (56/56)
+- **Failures / Regressions**: 0
+- **Test Execution Time**: ~2.7s
+- **Suites**:
+  1. `tests/rules.test.ts` (11 tests) — Pure deterministic rules engine & boundary conditions.
+  2. `tests/routes.test.ts` (7 tests) — Next.js App Router API route handlers.
+  3. `tests/understand.test.ts` (6 tests) — Speech understanding handler & Zod validation.
+  4. `tests/conversation.test.ts` (8 tests) — Ephemeral in-memory state reducer actions.
+  5. `tests/robustness.test.ts` (5 tests) — Rate limiting, transcript capping, timeout mapping, console privacy.
+  6. `tests/i18n_screens.test.ts` (7 tests) — Screen localization and bilingual translation parity.
+  7. `tests/eval.test.ts` (3 tests) — Extraction evaluation scoring harness.
+  8. `tests/data.test.ts` (6 tests) — Seed JSON schema integrity & entity relationships.
+  9. `tests/i18n.test.ts` (3 tests) — Translation string helper & parameter interpolation.
+
+### Top 10 Manual Verification Checklist for Reviewers & Demonstrators
+1. **Bilingual Toggle**: Tap `[हि | EN]` on Home; verify all headlines, mic button labels, and disclaimers toggle instantaneously.
+2. **Accessible Mic Button**: Big 160px Haldi mic button has 4.5:1 contrast, 3px focus ring, pulses only during listening, and respects `prefers-reduced-motion`.
+3. **Savitri Devi 1-Tap Demo**: Tap **"नमूना सुनिए" (Listen to Sample)** on Home; auto-populates Savitri's spoken sentence (`"Mera pati nahi rahe..."`) and seamlessly activates Guided Mode if API key is unconfigured.
+4. **Targeted Follow-up Chips**: Guided Mode prompts only ONE question at a time using large 56px touch chips (`[हाँ, BPL कार्ड है]`); answers record in a single tap without requiring keyboard.
+5. **Wispr Flow & Textarea Fallback**: The editable transcript `<textarea>` allows typing or dictation through Wispr Flow without clearing or premature sending.
+6. **Strict Rules Engine Eligibility**: Top 3 ranked schemes (Widow Pension, PM-JAY, NFSA Ration Card) display Tulsi green `✓ पात्र` badges and pure Hindi deterministic reasons without LLM hallucination.
+7. **Read-Aloud Speech Audio**: Tap **"सभी सुनाएँ" (Read All)** or individual **🔊 (सुनाइए)** buttons; verify speech synthesis speaks clearly in Hindi and cancels properly when interrupted or navigating.
+8. **Document Checklist**: Open Widow Pension detail; check off documents with interactive checkboxes; note clear guidance on "कहाँ मिलेगा" for all 5 required papers.
+9. **Physical Service Centers**: View nearby CSC Centers in Gaya tagged with sample notices `(नमूना)` and tap **"सरकारी पोर्टल खोलें ↗"** to verify the official NSAP portal link.
+10. **Offline Resilience**: Disconnect Wi-Fi or toggle Airplane Mode; verify non-intrusive `OfflineBanner` drops down while React session state is completely preserved.
+
+### How to Run Locally
+```bash
+# 1. Install dependencies
+npm install
+
+# 2. Configure environment (optional - guided mode works out of the box with zero keys)
+cp .env.example .env.local
+# Set GEMINI_API_KEY=your_key in .env.local if live Gemini API is desired
+
+# 3. Start development server
+npm run dev
+# Open http://localhost:3000
+
+# 4. Or build and start production server
+npm run build
+npm run start
+```
+
+### How to Deploy
+1. Push repository to GitHub.
+2. Import project into Vercel.
+3. Configure `LLM_PROVIDER=gemini`, `GEMINI_API_KEY`, `GEMINI_MODEL=gemini-2.5-flash` in Vercel project environment variables.
+4. Automatic deployment triggers on git push to `main`.
 
 ---
 
